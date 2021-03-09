@@ -321,6 +321,10 @@ h6 { font-size: 16px; }
     line-height: 2.7em;
 }
 
+.linkedin {
+    display: flex;
+}
+
 .input-field{
     width: 100%;
     padding-top: 10px;
