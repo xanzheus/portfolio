@@ -323,9 +323,10 @@ h6 { font-size: 16px; }
 
 #linkedin {
     display: flex;
-    .container {
-        margin: 7% auto auto;
-    }
+}
+
+#linkedin .container {
+    margin: 7% auto auto;
 }
 
 .input-field{
