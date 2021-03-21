@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brijesh Dhanani</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../blog.css" />
+    <link rel="stylesheet" type="text/css" href="../../default.css" />
+    <link id="theme-style" rel="stylesheet" type="text/css" href="" />
+  </head>
+  <body>
+    <div class="header">
+      <h2>Redux vs MobX : Which is Better For State Management in React?</h2>
+    </div>
+    <img class="img" src="../../images/Redux-vs-Mobx.jpg" />
+    <section class="s1">
+      <div class="main-container">
+        <p>
+          Before diving into a comparison between two of the most popular state
+          management libraries redux and MobX, let’s first understand the need
+          for a state management library. State management in React has been a
+          subject of dialogue within the Javascript fraternity.
+        </p>
+        <p>
+          As we know In ReactJs, each component maintains its own local state,
+          and generally, the root component maintains the state of your whole
+          application. Multiple components may maintain their state across
+          component life cycle methods like at the time of mounting, updating,
+          etc. But the problem is as the complexity of your application grows,
+          the state of the component becomes unpredictable, and debugging such
+          an application becomes a lengthy process. It also becomes complex to
+          maintain your states between multiple components.
+        </p>
+        <p>
+          This is the scenario when the state management libraries(Redux/MobX)
+          comes into the picture.
+        </p>
+        <h4>
+          But, wait now the question is which state management library should I
+          choose? Redux or Mobx?
+        </h4>
+        <p>
+          In this article, we will explore the pros and cons of both. Both Redux
+          and MobX work well with react. We will compare both libraries based on
+          some important points.
+        </p>
+        <h3>Store</h3>
+        <p>
+          Basically, a store is a single source of truth from where your data
+          originates. In simple words, a store is a place where you keep data of
+          your whole application.
+        </p>
+
+        <p>
+          Redux has one large store in which states of an entire application are
+          stored.
+        </p>
+        <p>
+          But, MobX has more than one store. As a result in MobX, you can reuse
+          and separate your stores. for example, you can use a store inside
+          another store.
+        </p>
+        <pre>
+        // First store 
+        class FirstStore {
+            @observable flag = false; 
+        } 
+        
+        export default const firstStore = new FirstStore(); 
+        
+        // Second store that using first store 
+        
+        import firstStore from 'FirstStore.js'; 
+        class SecondStore { 
+            @observable flag2 = false;
+            
+            @action setFlag = () => { 
+                this.flag2 = firstStore.flag; 
+            } 
+        } 
+        </pre>
+        <h3>Immutable vs mutable</h3>
+        <p>
+          Redux uses immutable states. This means Redux state is read-only,
+          reducers take the previous state and action as parameters and return a
+          new state. You cannot directly overwrite them.
+        </p>
+        <p>
+          In MobX states can be overwritten. You can read and write the write
+          MobX store.
+        </p>
+
+        <h3>Plain data vs Observable data</h3>
+        <p>
+          Redux uses a normal Javascript object to store the data. It means
+          Redux stores data in a plain JavaScript object or arrays.
+        </p>
+        <pre>
+        {
+            person = { 
+                firstName : "John", 
+                lastName : "Doe", 
+                age : 50, 
+                eyeColor : "blue" 
+            }; 
+        }
+    </pre
+        >
+        <p>
+          MobX uses an observable to store the data. It wraps a normal
+          JavaScript object or an array with observable capabilities.
+        </p>
+        <pre>
+        class userStore { 
+            @observable users = [] 
+            
+            @action getUser = () => { 
+                return this.users; 
+            } 
+            
+            @action addUser = (data) => { 
+                this.users.push(data); 
+            } 
+        }
+    </pre
+        >
+        <p>
+          In Redux the data is usually normalized. In MobX, you can keep
+          denormalized data.
+        </p>
+        <h3>Debugging</h3>
+        <p>
+          Since there’s only one store in Redux debugging becomes a lot easier.
+          Also Redux provides powerful developer tools including time
+          travelling. Whereas, debugging becomes a lot harder in MobX as there
+          is more abstraction. And the developer tools existing for MobX are
+          also just average.
+        </p>
+        <h3>Conclusion</h3>
+        <ul style="list-style: disc">
+          <li>
+            The selection of any state management library should be based on the
+            scale of an application. MobX is the best choice for the small-scale
+            application. For the large-scale application, obviously, you can go
+            with Redux.
+          </li>
+          <li>
+            If you prefer to build your app fast then MobX is a better option,
+            as it highly abstracts the mechanism of updating a component based
+            on state changes.
+          </li>
+          <li>
+            MobX is much easier to learn and has a steady learning curve.
+            Whereas the Learning curve in Redux is steep and it can be hard to
+            get a complete grasp of Redux straight away.
+          </li>
+        </ul>
+        <p>
+          The most important thing is it depends on what library you wish to use
+          and are comfortable with.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <h3>Follow Me</h3>
+      <ul id="navigation">
+        <li>
+          <a target="_blank" href="https://github.com/BRdhanani"
+            ><i class="fa fa-github"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/people/Brijesh-Dhanani/100010798357963"
+            ><i class="fa fa-facebook"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://twitter.com/dhanani_brijesh"
+            ><i class="fa fa-twitter"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/brijesh-dhanani-8a2061141/"
+            ><i class="fa fa-linkedin"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://youtu.be/X_zgw9GojSc"
+            ><i class="fa fa-youtube"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../script.js"></script>
+  </body>
+</html>
