@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brijesh Dhanani</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../blog.css" />
+    <link rel="stylesheet" type="text/css" href="../../default.css" />
+    <link id="theme-style" rel="stylesheet" type="text/css" href="" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <link
+      rel="canonical"
+      href="https://brdhanani.github.io/blogs/whats-the-difference-between-var-let-and-const/"
+    />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link
+      rel="amphtml"
+      href="https://brdhanani.github.io/blogs/whats-the-difference-between-var-let-and-const/amp/"
+    />
+
+    <meta property="og:site_name" content="brdhanani.github.io" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="What&#x27;s the Difference between Var, Let, and Const?"
+    />
+    <meta
+      property="og:description"
+      content="why people are using let and const if we’ve var. what makes them different from good ol’ var which we’ve been using? If you are still not clear about this, then this article is especially for you."
+    />
+    <meta
+      property="og:url"
+      content="https://brdhanani.github.io/blogs/whats-the-difference-between-var-let-and-const/"
+    />
+    <meta
+      property="og:image"
+      content="https://miro.medium.com/max/700/1*au9d7Y-qu8Zt3tRhoLY25Q.png"
+    />
+    <meta property="article:tag" content="JavaScript" />
+    <meta property="article:tag" content="ES6" />
+    <meta property="article:tag" content="Frontend" />
+
+    <meta
+      property="article:publisher"
+      content="https://www.facebook.com/BrijeshDhananiDev"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="What&#x27;s the Difference between Var, Let, and Const?"
+    />
+    <meta
+      name="twitter:description"
+      content="why people are using let and const if we’ve var. what makes them different from good ol’ var which we’ve been using? If you are still not clear about this, then this article is especially for you."
+    />
+    <meta
+      name="twitter:url"
+      content="https://brdhanani.github.io/blogs/whats-the-difference-between-var-let-and-const/"
+    />
+    <meta
+      name="twitter:image"
+      content="https://miro.medium.com/max/700/1*au9d7Y-qu8Zt3tRhoLY25Q.png"
+    />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Brijesh Dhanani" />
+    <meta name="twitter:data2" content="JavaScript, ES6, Frontend" />
+    <meta name="twitter:site" content="@dhanani_brijesh" />
+    <meta name="twitter:creator" content="@dhanani_brijesh" />
+  </head>
+  <body>
+    <div class="header">
+      <h2>What’s the Difference Between var, let, and const?</h2>
+    </div>
+    <img class="img" src="../../images/let-var-const.jpg" />
+    <section class="s1">
+      <div class="main-container">
+        <p>
+          why people are using let and const if we’ve var. what makes them
+          different from good ol’ var which we’ve been using? If you are still
+          not clear about this, then this article is especially for you.
+        </p>
+        <p>
+          In this article, we’ll discuss the difference between var, let and
+          const. But before starting we need to understand what scope is? As
+          scope will be a key point in this article.
+        </p>
+        <h4>Scope</h4>
+        <p>
+          Scope essentially means where these variables are available for use.
+          Scope determines the accessibility (visibility) of these variables.
+        </p>
+        <h3>var</h3>
+        <p>
+          All the variables which are declared using var are globally scoped or
+          function/locally scoped. The scope is global when a var variable is
+          declared outside a function. wait what does it mean. let’s see one
+          example.
+        </p>
+        <pre>
+
+          var globalVar = "hey";
+
+          function var() {
+              var innerVariable = "hello";
+          }
+
+        </pre>
+        <p>
+          Here, globalVar is globally scoped because it exists outside a
+          function while innerVariable is function scoped. So we can access
+          globalVar inside function as well as outside of a function but we
+          cannot access the variable innerVariable outside of a function.
+        </p>
+        <p>So if we do this:</p>
+        <pre>
+
+          var globalVar = "hey hi";
+          
+          function newFunction() {
+              var innerVariable = "hello";
+          }
+
+          console.log(innerVariable); // error: innerVariable is not defined
+
+        </pre>
+        <h4>var can be re-declared and updated.</h4>
+        <p>
+          What it means is you can re-initialize the variable using the same
+          name with var and also you can update its value.
+        </p>
+        <pre>
+
+          var globalVar = "hey";
+          var globalVar = "Hello";
+
+          var innerVariable = "hey";
+          innerVariable = "Hello";
+
+        </pre>
+        <h3>What’s the problem with var</h3>
+        <pre>
+
+          var globalVar = "hey";
+          var flag = true;
+
+          if (flag) {
+              var globalVar = "Hello";
+          }
+
+          console.log(globalVar) // "Hello"
+
+        </pre>
+        <p>
+          So, since the flag returns true, globalVar is redefined to “Hello”. It
+          becomes a problem when you want to update the variable’s value for
+          that particular block. Here, globalVar will print “Hello” whenever you
+          try to access it anywhere.
+        </p>
+
+        <h3>let</h3>
+        <p>
+          let solves the problem with var that we just covered. Let’s consider
+          why this is so. let is block scoped. a variable declared in a block
+          with let is only available for use within that block.
+        </p>
+        <pre>
+
+          if (flag) {
+            var globalVar = "Hello";
+            console.log(globalVar)
+          }
+
+          console.log(globalVar); // error: globalVar is not defined
+
+        </pre>
+        <p>
+          We see that using globalVar outside its block returns an error. This
+          is because let variables are block scoped.
+        </p>
+        <h4>let can be updated but not re-declared.</h4>
+        <p>
+          What it means is you can not re-initialize the variable using the same
+          name with let and you can update its value.
+        </p>
+        <p>If you try following then it will work for let.</p>
+        <pre>
+
+          let globalVar = "Hi";
+
+          globalVar = "Hello";
+
+        </pre>
+        <p>But if you try following then it will throw an error.</p>
+        <pre>
+
+          let globalVar = "Hi";
+          
+          let globalVar = "Hello"; // Identifier 'globalVar' has already been declared
+
+        </pre>
+        <p>
+          However, if you’ve defined the same variable is defined in different
+          scopes then it will run perfectly without any error:
+        </p>
+        <pre>
+
+          let globalVar = "hey";
+          let flag = true;
+
+          if (flag) {
+              let globalVar = "Hello";
+              console.log(globalVar); // "Hello"
+          }
+
+          console.log(globalVar) // "hey"
+          
+          </pre
+        >
+        <h3>const</h3>
+        <p>
+          Like let, const declarations also can only be accessed within the
+          block they were declared. let’s see what’s the difference between let
+          and const.
+        </p>
+        <h4>const cannot be updated or re-declared</h4>
+        <p>
+          What it means is you can not re-initialize the variable using the same
+          name with const and also you can update its value.
+        </p>
+        <p>
+          If you try both of the following then both will throw an error for
+          const.
+        </p>
+        <pre>
+
+          const globalVar = "Hi";
+
+          globalVar = "Hello"; // error: Assignment to constant variable.
+
+          const globalVar = "Hi";
+
+          const globalVar = "Hello"; // Identifier 'globalVar' has already been declared
+          
+          </pre
+        >
+        <p>
+          However, This behavior of const is somehow different when it comes to
+          objects declared with const. You can not update a const object, But
+          you can update the properties of these objects can be updated.
+        </p>
+        <pre>
+
+        const person = {
+          name: "john",
+          age: 4
+        }
+
+        You can not update above object like below.
+
+        person = {
+            name: "joe",
+            gender: "male"
+        } // error:  Assignment to constant variable.
+        
+        </pre>
+        <p>But you can mutate an object declared with const like below.</p>
+        <pre>
+          
+          person.gender = "male";
+        
+        </pre>
+        <p>
+          This will add gender property in the person object with value male
+          without returning errors.
+        </p>
+        <iframe
+          width="600"
+          height="345"
+          src="https://www.youtube.com/embed/X_zgw9GojSc"
+          frameborder="0"
+        ></iframe>
+        <h3>Conclusion</h3>
+
+        <p>
+          It’s generally advisable and also good practice to avoid using var
+          because of its function-scope. It absolutely appears to be that the
+          aim of ES6 is to replace var with let/const since they will result in
+          better coding practices.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <h3>Follow Me</h3>
+      <ul id="navigation">
+        <li>
+          <a target="_blank" href="https://github.com/BRdhanani"
+            ><i class="fa fa-github"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/people/Brijesh-Dhanani/100010798357963"
+            ><i class="fa fa-facebook"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://twitter.com/dhanani_brijesh"
+            ><i class="fa fa-twitter"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/brijesh-dhanani-8a2061141/"
+            ><i class="fa fa-linkedin"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://youtu.be/X_zgw9GojSc"
+            ><i class="fa fa-youtube"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../script.js"></script>
+  </body>
+</html>
