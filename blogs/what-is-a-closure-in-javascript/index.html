@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brijesh Dhanani</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../blog.css" />
+    <link rel="stylesheet" type="text/css" href="../../default.css" />
+    <link id="theme-style" rel="stylesheet" type="text/css" href="" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <link
+      rel="canonical"
+      href="https://brdhanani.github.io/blogs/what-is-a-closure-in-javascript/"
+    />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link
+      rel="amphtml"
+      href="https://brdhanani.github.io/blogs/what-is-a-closure-in-javascript/amp/"
+    />
+
+    <meta property="og:site_name" content="brdhanani.github.io" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="What is a closure In JavaScript?" />
+    <meta
+      property="og:description"
+      content="In this blog, we’ll learn closure which is what many developers think most complicated topic in javascript. If you’re preparing for an interview for mnc companies then it’s 100% probabilities that they will ask you about closures."
+    />
+    <meta
+      property="og:url"
+      content="https://brdhanani.github.io/blogs/what-is-a-closure-in-javascript/"
+    />
+    <meta
+      property="og:image"
+      content="https://miro.medium.com/max/700/1*hNadb2pYnznc6jWYjbaBzw.jpeg"
+    />
+    <meta property="article:tag" content="JavaScript" />
+    <meta property="article:tag" content="ES6" />
+    <meta property="article:tag" content="Frontend" />
+
+    <meta
+      property="article:publisher"
+      content="https://www.facebook.com/BrijeshDhananiDev"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="What is a closure In JavaScript?" />
+    <meta
+      name="twitter:description"
+      content="In this blog, we’ll learn closure which is what many developers think most complicated topic in javascript. If you’re preparing for an interview for mnc companies then it’s 100% probabilities that they will ask you about closures."
+    />
+    <meta
+      name="twitter:url"
+      content="https://brdhanani.github.io/blogs/what-is-a-closure-in-javascript/"
+    />
+    <meta
+      name="twitter:image"
+      content="https://miro.medium.com/max/700/1*hNadb2pYnznc6jWYjbaBzw.jpeg"
+    />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Brijesh Dhanani" />
+    <meta name="twitter:data2" content="JavaScript, ES6, Frontend" />
+    <meta name="twitter:site" content="@dhanani_brijesh" />
+    <meta name="twitter:creator" content="@dhanani_brijesh" />
+  </head>
+  <body>
+    <div class="header">
+      <h2>What is a closure In JavaScript?</h2>
+    </div>
+    <img class="img" src="../../images/closure.jpg" />
+    <section class="s1">
+      <div class="main-container">
+        <p>
+          In this blog, we’ll learn closure which is what many developers think
+          most complicated topic in javascript. If you’re preparing for an
+          interview for mnc companies then it’s 100% probabilities that they
+          will ask you about closures.
+        </p>
+        <p>so let’s start and see what the closures is?</p>
+        <a
+          href="https://www.youtube.com/channel/UC6Qkf6NIa27hL4U0uqHHhPg?sub_confirmation=1"
+          rel="nofollow"
+          ><img
+            src="https://camo.githubusercontent.com/5395c2813104385ad478c6a1fda7f3565124d6f72a3181ee288a83a6fc7dfc6c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d596f75547562652d7265643f7374796c653d666c6174266c6f676f3d796f7574756265266c696e6b3d68747470733a2f2f7777772e796f75747562652e636f6d2f6368616e6e656c2f554336516b66364e49613237684c345530757148486850673f7375625f636f6e6669726d6174696f6e3d31"
+            alt="YouTube"
+            data-canonical-src="https://img.shields.io/badge/-YouTube-red?style=flat&amp;logo=youtube&amp;link=https://www.youtube.com/channel/UC6Qkf6NIa27hL4U0uqHHhPg?sub_confirmation=1"
+            style="max-width: 100%"
+        /></a>
+        <h3>What is a closure</h3>
+        <p>
+          Rather than directly going to its definition, I would like to proceed
+          with the practical example of closure. After seeing this example
+          you’ll completely clear about closure.
+        </p>
+        <pre>
+
+          var globalVar = "xyz";  
+          (function outerFunc(outerArg) {     
+              var outerVar = 'a';          
+              (function innerFunc(innerArg) {     
+                  var innerVar = 'b';          
+                  
+                  console.log(         
+                      "outerArg = " + outerArg + "\n" +         
+                      "innerArg = " + innerArg + "\n" +         
+                      "outerVar = " + outerVar + "\n" +         
+                      "innerVar = " + innerVar + "\n" +         
+                      "globalVar = " + globalVar
+                  );          
+                })(456); 
+          })(123);
+
+        </pre>
+        <p>Let’s understand the above example now.</p>
+        <p>
+          we’ve declared one global variable first after then created two
+          functions where outerFunc is the parent function and innerFunc is an
+          inner function. you’re thinking that why I’m wrapping function in
+          parenthesis so it’s nothing but <b>IIFE</b>(Immediately Invoked
+          Function Expression). <b>IIFE</b>(Immediately Invoked Function
+          Expression) is a function that runs as soon as it is defined.
+        </p>
+        <p>
+          We’re passing 123 value as a parameter to our outerFunc function and
+          456 value as a parameter to the innerFunc function. Inside our
+          innerFunc function, we’re printing all the values.
+        </p>
+        <h3>What will be the output of the above code?</h3>
+        <p>
+          It’ll print something like that. You can see that all values are
+          printing. This is what closure looks like.
+        </p>
+        <pre>
+
+          outerArg = 123 
+          innerArg = 456 
+          outerVar = a 
+          innerVar = b 
+          globalVar = xyz
+
+        </pre>
+        <p>As I already said, closure is nothing but a pretty simple topic.</p>
+        <h4>Definition</h4>
+        <p>
+          Now let me tell you it's the perfect definition so closure is an inner
+          function that has access to the variables in the outer (enclosing)
+          function’s scope chain. Closure has access to variables in three
+          scopes; specifically:
+        </p>
+        <ul>
+          <li>variable in its own scope,</li>
+          <li>variables in the enclosing function’s scope, and</li>
+          <li>global variables.</li>
+        </ul>
+        <p>
+          let me repeat it once again. Closure is an inner function which is
+          innerFunc in our case has access to the variables in the outer
+          (enclosing) function’s scope chain which is outerVar and globalVar.
+        </p>
+        <h4>Closure inside FOR loop</h4>
+        <p>
+          Let’s take one example for better understanding. What will be the
+          output of the following code:
+        </p>
+        <pre>
+
+          for (var i = 0; i < 5; i++) {  
+            setTimeout(function() { console.log(i); }, i * 1000 ); 
+          }
+
+        </pre>
+        <p>
+          After brainstorming, you’ll say that it’ll print 0,1,2,3,4. But you’re
+          wrong. rather, it will display 5, 5, 5, 5, and 5.
+        </p>
+        <p>
+          reason for this is that each function executed within the loop will be
+          executed after the entire loop has completed and all will therefore
+          reference the last value stored in i, which was 5.
+        </p>
+        <h3>Closure in Action</h3>
+        <p>
+          This is where Closures comes into the picture. Closures can be used to
+          prevent this problem by creating a unique scope for each iteration,
+          storing each unique value of the variable within its scope, as
+          follows:
+        </p>
+        <pre>
+
+          for (var i = 0; i < 5; i++) {     
+            (function(x) {         
+                setTimeout(function() { console.log(x); }, x * 1000 );              
+            })(i); 
+          }
+
+        </pre>
+        <p>
+          This will produce the presumably desired result of logging 0, 1, 2, 3,
+          and 4 to the console.
+        </p>
+        <p>
+          You can check my video on closure here for a better understanding.
+        </p>
+
+        <iframe
+          width="600"
+          height="345"
+          src="https://www.youtube.com/embed/Ke-IgKQmz3Y"
+          frameborder="0"
+        ></iframe>
+        <h3>Conclusion</h3>
+
+        <p>
+          Closures are one of those concepts in JavaScript that are difficult to
+          understand at first. But once you understand them, you realize that
+          things could not have been any other way.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <h3>Follow Me</h3>
+      <ul id="navigation">
+        <li>
+          <a target="_blank" href="https://github.com/BRdhanani"
+            ><i class="fa fa-github"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/people/Brijesh-Dhanani/100010798357963"
+            ><i class="fa fa-facebook"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://twitter.com/dhanani_brijesh"
+            ><i class="fa fa-twitter"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/brijesh-dhanani-8a2061141/"
+            ><i class="fa fa-linkedin"></i
+          ></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://youtu.be/X_zgw9GojSc"
+            ><i class="fa fa-youtube"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../script.js"></script>
+  </body>
+</html>
